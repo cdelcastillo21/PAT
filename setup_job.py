@@ -38,7 +38,7 @@ def init_job(exec_path, adcirc_input, total_job_proc, output_dir):
 
     # Create one line python file that will launch pylauncher. This is what submit script will call
     launch_script = """import pylauncher4 
-pylauncher4.IbrunLauncher("{file}", cores="file", debug="task", pre_post_process=True)""".format(file=pl_file)
+pylauncher4.IbrunLauncher("{file}", cores="file", debug="job+host+task+exec", pre_post_process=True)""".format(file=pl_file)
     fp = open(os.path.join(job_dir, 'launch.py'), 'w')
     fp.write(launch_script)
     fp.close()

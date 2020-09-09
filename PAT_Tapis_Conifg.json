@@ -1,0 +1,189 @@
+{
+  "name": "adcirc_jup_wf",
+  "icon": null,
+  "parallelism": "SERIAL",
+  "defaultMaxRunTime": "10:00:00",
+  "defaultQueue": "normal",
+  "version": "51.3",
+  "isPublic": false,
+  "helpURI": "https://www.designsafe-ci.org/rw/user-guide/workspace/adcirc/",
+  "label": "ADCIRC-V51 (JupyterWorkflow)",
+  "owner": "hgurram",
+  "shortDescription": "ADCIRC provides user with a sequential ADCIRC program. It is ideal to run small models on DesignSafe.",
+  "longDescription": "ADCIRC provides user with a sequential ADCIRC program. It is ideal to run small models on DesignSafe.",
+  "tags": [
+    null
+  ],
+  "ontology": [],
+  "executionType": "HPC",
+  "executionSystem": "designsafe.community.exec.stampede2.nores",
+  "deploymentPath": "hgurram/adcirc/adcirc_jupyter_wf",
+  "deploymentSystem": "designsafe.storage.default",
+  "templatePath": "wrapper.sh",
+  "testPath": "test/test.sh",
+  "checkpointable": false,
+  "modules": [
+    "adcirc",
+    "intel/18.0.2",
+    "impi/18.0.2",
+    "netcdf"
+  ],
+  "inputs": [
+    {
+      "id": "inputDirectory",
+      "value": {
+        "validator": "",
+        "visible": true,
+        "required": true,
+        "order": 0,
+        "enquote": false,
+        "default": "agave://designsafe.storage.community//app_examples/adcirc/adcirc_inputs"
+      },
+      "details": {
+        "label": "Input Directory",
+        "description": "The directory containing your ADCIRC input files. You can drag the link for the directory from the Data Browser on the left, or click the 'Select Input' button and then select the directory. To try this out with example data, copy and paste 'agave://designsafe.storage.community//app_examples/adcirc/adcirc_inputs' above.",
+        "argument": null,
+        "showArgument": false,
+        "repeatArgument": false
+      },
+      "semantics": {
+        "minCardinality": 1,
+        "maxCardinality": 1,
+        "ontology": [
+          "xsd:string"
+        ],
+        "fileTypes": [
+          "raw-0"
+        ]
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "id": "PYL",
+      "value": {
+        "visible": true,
+        "required": true,
+        "type": "enumeration",
+        "order": 0,
+        "enquote": false,
+        "default": "False",
+        "enum_values": [
+          {
+            "True": "True"
+          },
+          {
+            "False": "False"
+          }
+        ]
+      },
+      "details": {
+        "label": "Pylauncher",
+        "description": "Please choose true if you want to launch multiple jobs.",
+        "argument": null,
+        "showArgument": false,
+        "repeatArgument": false
+      },
+      "semantics": {
+        "minCardinality": 1,
+        "maxCardinality": 1,
+        "ontology": [
+          "xs:enumeration",
+          "xs:string"
+        ]
+      }
+    },
+    {
+      "id": "launcher",
+      "value": {
+        "visible": true,
+        "required": true,
+        "type": "enumeration",
+        "order": 0,
+        "enquote": false,
+        "default": "NA",
+        "enum_values": [
+          {
+            "NA": "NA"
+          },
+          {
+            "Serial": "Serial"
+          },
+          {
+            "Parallel": "Parallel"
+          }
+        ]
+      },
+      "details": {
+        "label": "Launcher type",
+        "description": "Please choose the launcher type.",
+        "argument": null,
+        "showArgument": false,
+        "repeatArgument": false
+      },
+      "semantics": {
+        "minCardinality": 1,
+        "maxCardinality": 1,
+        "ontology": [
+          "xs:enumeration",
+          "xs:string"
+        ]
+      }
+    },
+    {
+      "id": "inputFile",
+      "value": {
+        "visible": true,
+        "required": true,
+        "type": "string",
+        "order": 0,
+        "enquote": false,
+        "default": "input.txt",
+        "validator": "([^\\s]+(\\.(?i)(txt))$)"
+      },
+      "details": {
+        "label": "Script",
+        "description": "Input script for ADCIRC jobs.",
+        "argument": null,
+        "showArgument": false,
+        "repeatArgument": false
+      },
+      "semantics": {
+        "minCardinality": 1,
+        "maxCardinality": 1,
+        "ontology": [
+          "http://sswapmeet.sswap.info/mime/text/Tcl"
+        ]
+      }
+    },
+    {
+      "id": "cores",
+      "value": {
+        "visible": true,
+        "required": true,
+        "type": "string",
+        "order": 0,
+        "enquote": false,
+        "default": "1",
+        "validator": ""
+      },
+      "details": {
+        "label": "Number of Processors",
+        "description": "Please enter the number of processors required to solve each job. ",
+        "argument": null,
+        "showArgument": false,
+        "repeatArgument": false
+      },
+      "semantics": {
+        "minCardinality": 1,
+        "maxCardinality": 1,
+        "ontology": [
+          "http://www.dynaexamples.com/ale/fsi"
+        ]
+      }
+    }
+  ],
+  "outputs": [],
+  "appIcon": "ADCIRC",
+  "appCategory": "Simulation"
+}

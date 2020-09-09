@@ -1,5 +1,5 @@
 # pl_line += "post_process.sh {job_dir} {run_name} {output_dir}"
-# set -x
+set -x
 
 # Read command line inputs
 JOB_DIR=${1}
@@ -25,9 +25,12 @@ touch "end_${END_TS}"
 # Create output Dir
 mkdir "${RUN_OUTPUT_DIR}"
 
-cp ${RUN_DIR}/adcirc.log ${RUN_OUTPUT_DIR}/
+# Copy log and timestamp files
+cp ${RUN_DIR}/*.log ${RUN_OUTPUT_DIR}/
 cp ${RUN_DIR}/start_* ${RUN_OUTPUT_DIR}/
 cp ${RUN_DIR}/end_* ${RUN_OUTPUT_DIR}/
+cp ${RUN_DIR}/adcprep1_* ${RUN_OUTPUT_DIR}/
+cp ${RUN_DIR}/adcprep2_* ${RUN_OUTPUT_DIR}/
 
 # Clean run directory
 cd ${JOB_DIR}

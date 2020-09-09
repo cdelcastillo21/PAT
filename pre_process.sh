@@ -20,13 +20,24 @@ RUN_DIR="${JOB_DIR}/${RUN_NAME}"
 # Copy input files to run dir
 cp -r ${ADCIRC_INPUT} ${RUN_DIR}
 
-# Navigate to run dir and run adcprep
+# Navigate to run dir 
 cd $RUN_DIR
-printf '%s\n1\nfort.14\n' ${ADCIRC_RUN_PROC} | "${ADCIRC_EXEC}/adcprep"
-printf '%s\n2\n' ${ADCIRC_RUN_PROC} | "${ADCIRC_EXEC}/adcprep"
 
 # Create start timestamp file
 START_TS=`date +"%Y-%m-%d-%H:%M:%S"`
 touch "start_${START_TS}"
+
+# Run adcprep
+printf '%s\n1\nfort.14\n' ${ADCIRC_RUN_PROC} | "${ADCIRC_EXEC}/adcprep" > adcprep1.log
+
+# Create adcprep timestamp file
+ADCPREP1_TS=`date +"%Y-%m-%d-%H:%M:%S"`
+touch "adcprep1_${ADCPREP1_TS}"
+
+printf '%s\n2\n' ${ADCIRC_RUN_PROC} | "${ADCIRC_EXEC}/adcprep" >adcprep2.log
+
+# Create adcprep timestamp file
+ADCPREP2_TS=`date +"%Y-%m-%d-%H:%M:%S"`
+touch "adcprep2_${ADCPREP2_TS}"
 
 exit 0
